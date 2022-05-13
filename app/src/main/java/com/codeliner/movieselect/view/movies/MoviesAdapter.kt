@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class MoviesAdapter: RecyclerView.Adapter<MoviesAdapter.MyViewHolder>() {
 
-    //private var moviesList = emptyList<Result>()
+    private var moviesList = emptyList<Result>()
 
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view)
 
