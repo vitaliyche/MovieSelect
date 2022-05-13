@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.codeliner.movieselect.MAIN
 import com.codeliner.movieselect.databinding.FragmentMoviesBinding
 
 class MoviesFragment : Fragment() {
@@ -32,8 +34,17 @@ class MoviesFragment : Fragment() {
 
     private fun init() {
         val viewModel = ViewModelProvider(this).get(MoviesViewModel::class.java)
+        viewModel.getMovies()
         recyclerView = binding.moviesRv
         recyclerView.adapter = adapter
+        try {
+            viewModel.myMovies.observe(viewLifecycleOwner, {
+                    list -> adapter.setList(list.body()!!.results)
+            })
+        } catch (e: Exception) {
+            Toast.makeText(MAIN, e.message, Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     override fun onDestroyView() {

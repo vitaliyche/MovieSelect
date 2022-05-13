@@ -8,6 +8,7 @@
 
    <androidx.recyclerview.widget.RecyclerView
        android:id="@+id/movies_rv"
+       android:layout_margin="2dp"
        tools:listitem="@layout/item_movies"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
