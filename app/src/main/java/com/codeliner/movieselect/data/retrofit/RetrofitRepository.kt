@@ -5,7 +5,7 @@ import com.codeliner.movieselect.model.MoviesModel
 import retrofit2.Response
 
 class RetrofitRepository {
-    suspend fun getMovies(): Response<MoviesModel> {
+    suspend fun getMovies(): Response<MoviesModel> { //pageIndex: Int
         return RetrofitInstance.api.getMovieReview()
     }
 }
