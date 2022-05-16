@@ -26,8 +26,8 @@ class MoviesAdapter: RecyclerView.Adapter<MoviesAdapter.MyViewHolder>() {
         holder.itemView.item_tv_description.text = moviesList[position].summary_short
 
         Glide.with(MAIN)
-            .load(moviesList[position].multimedia)
-            .fitCenter()
+            .load(moviesList[position].multimedia.src)
+            .centerCrop()
             .placeholder(R.drawable.ic_launcher_foreground)
             .into(holder.itemView.item_img_movie)
     }
