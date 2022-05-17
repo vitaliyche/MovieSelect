@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.codeliner.movieselect.MAIN
 import com.codeliner.movieselect.R
 import com.codeliner.movieselect.model.MovieResult
 import kotlinx.android.synthetic.main.item_movies.view.*
@@ -24,8 +23,9 @@ class MoviesAdapter: RecyclerView.Adapter<MoviesAdapter.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.itemView.item_tv_title.text = moviesList[position].display_title
         holder.itemView.item_tv_description.text = moviesList[position].summary_short
+        val context = holder.itemView.context
 
-        Glide.with(MAIN)
+        Glide.with(context)
             .load(moviesList[position].multimedia.src)
             .centerCrop()
             .placeholder(R.drawable.ic_launcher_foreground)
