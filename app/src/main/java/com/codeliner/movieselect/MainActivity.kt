@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         moviesBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        MAIN = this
         navController = Navigation.findNavController(this, R.id.nav_host)
     }
 

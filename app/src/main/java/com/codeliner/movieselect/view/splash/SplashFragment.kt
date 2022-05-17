@@ -21,7 +21,7 @@ class SplashFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_splash, container, false)
         CoroutineScope(Dispatchers.Main).launch {
-            delay(500)
+            delay(1000)
             Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_moviesFragment)
         }
         return view

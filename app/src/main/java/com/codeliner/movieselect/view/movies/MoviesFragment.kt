@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.codeliner.movieselect.MAIN
 import com.codeliner.movieselect.databinding.FragmentMoviesBinding
 
 class MoviesFragment : Fragment() {
@@ -42,7 +41,7 @@ class MoviesFragment : Fragment() {
                     list -> adapter.setList(list.body()!!.results)
             })
         } catch (e: Exception) {
-            Toast.makeText(MAIN, e.message, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
         }
 
     }
