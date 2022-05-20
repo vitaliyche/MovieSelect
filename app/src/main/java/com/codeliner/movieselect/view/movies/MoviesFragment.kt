@@ -31,6 +31,25 @@ class MoviesFragment : Fragment() {
         init()
     }
 
+    private fun pagination() {
+//        // RecyclerView Pagination********************************
+//        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                val visibleItemCount = layoutManager.childCount
+//                val pastVisibleItem = layoutManager.findFirstCompletelyVisibleItemPosition()
+//                val total = adapter.itemCount
+//
+//                if (!isLoading) {
+//                    if ((visibleItemCount + pastVisibleItem) >= total) {
+//                        pageNum++
+//                        getMovies()
+//                    }
+//                }
+//                super.onScrolled(recyclerView, dx, dy)
+//            }
+//        })
+    }
+
     private fun init() {
         val viewModel = ViewModelProvider(this).get(MoviesViewModel::class.java)
         viewModel.getMovies()
