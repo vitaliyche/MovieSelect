@@ -23,32 +23,12 @@ class MoviesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         moviesBinding = FragmentMoviesBinding.inflate(layoutInflater, container, false)
-        //return inflater.inflate(R.layout.fragment_movies, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
-    }
-
-    private fun pagination() {
-//        // RecyclerView Pagination********************************
-//        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                val visibleItemCount = layoutManager.childCount
-//                val pastVisibleItem = layoutManager.findFirstCompletelyVisibleItemPosition()
-//                val total = adapter.itemCount
-//
-//                if (!isLoading) {
-//                    if ((visibleItemCount + pastVisibleItem) >= total) {
-//                        pageNum++
-//                        getMovies()
-//                    }
-//                }
-//                super.onScrolled(recyclerView, dx, dy)
-//            }
-//        })
     }
 
     private fun init() {
@@ -62,15 +42,6 @@ class MoviesFragment : Fragment() {
                 adapter.submitData(it)
             }
         }
-
-//        try {
-//            viewModel.myMovies.observe(viewLifecycleOwner, {
-//                    list -> adapter.setList(list.body()!!.results)
-//            })
-//        } catch (e: Exception) {
-//            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
-//        }
-
     }
 
     override fun onDestroyView() {

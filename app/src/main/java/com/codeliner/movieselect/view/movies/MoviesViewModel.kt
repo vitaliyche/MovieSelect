@@ -12,9 +12,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class MoviesViewModel(
-    //private val pagingSourceFactory: MoviesPagingSource.Factory
-) : ViewModel() {
+class MoviesViewModel() : ViewModel() {
     private val repository = RetrofitRepository()
     val myMovies: MutableLiveData<Response<MoviesModel>> = MutableLiveData()
     val pagingMoviesFlow = repository.getPagingMoviesFlow()
