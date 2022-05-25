@@ -1,14 +1,15 @@
 package com.codeliner.movieselect.view.movies
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.codeliner.movieselect.databinding.FragmentMoviesBinding
+import kotlinx.coroutines.flow.collectLatest
 
 class MoviesFragment : Fragment() {
 
@@ -55,13 +56,20 @@ class MoviesFragment : Fragment() {
         viewModel.getMovies()
         recyclerView = binding.moviesRv
         recyclerView.adapter = adapter
-        try {
-            viewModel.myMovies.observe(viewLifecycleOwner, {
-                    list -> adapter.setList(list.body()!!.results)
-            })
-        } catch (e: Exception) {
-            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+
+        lifecycleScope.launchWhenCreated {
+            viewModel.pagingMoviesFlow.collectLatest {
+                adapter.submitData(it)
+            }
         }
+
+//        try {
+//            viewModel.myMovies.observe(viewLifecycleOwner, {
+//                    list -> adapter.setList(list.body()!!.results)
+//            })
+//        } catch (e: Exception) {
+//            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+//        }
 
     }
 
