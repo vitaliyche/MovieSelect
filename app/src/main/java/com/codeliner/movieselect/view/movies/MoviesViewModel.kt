@@ -4,29 +4,34 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import com.codeliner.movieselect.data.retrofit.RetrofitRepository
 import com.codeliner.movieselect.model.MoviesModel
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class MoviesViewModel(
-    //private val pagingSourceFactory: MoviesPagingSource.Factory
-) : ViewModel() {
+class MoviesViewModel() : ViewModel() {
     private val repository = RetrofitRepository()
     val myMovies: MutableLiveData<Response<MoviesModel>> = MutableLiveData()
+    val pagingMoviesFlow = repository.getPagingMoviesFlow()
+        .stateIn(
+            viewModelScope,
+            SharingStarted.Lazily,
+            PagingData.empty()
+        ) //когда нет данных, класть эмпти
 
-//    val listData = Pager(PagingConfig(pageSize = 1)) {
-//        MoviesPagingSource(apiService)
-//    }
 
     fun getMovies() {
         viewModelScope.launch {
             try {
                 myMovies.value = repository.getMovies()
-            } catch (e:Exception) {
+            } catch (e: Exception) {
                 Log.e("ERROR", e.message.toString())
             }
-
         }
+
     }
+
 }
